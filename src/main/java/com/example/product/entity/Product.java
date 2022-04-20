@@ -26,5 +26,7 @@ public class Product {
     private double balance;
     private String idclient;
     private String currency;
-
+    private double comission;
+    private int movementlimit;
+    private int uniquedayofmovement;
 }

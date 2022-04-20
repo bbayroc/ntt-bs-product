@@ -11,4 +11,8 @@ public class ProductRequest {
     private String idclient;
     private String currency;
     private String clienttype;
+    private double comission;
+    private int movementlimit;
+    private int uniquedayofmovement;
+
 }
