@@ -26,6 +26,7 @@ public class Validator {
 
             Product product1 = productRepository.findByIdclient(product.getIdclient());
 
+            //Valida que el cliente tenga una Tarjeta de Credito
             if (Objects.equals(product1.getAccounttype(), "Tarjeta de Credito")) {
 
                 return product;
@@ -45,9 +46,12 @@ public class Validator {
 
         Product product1 = productRepository.findByIdclient(productRequest.getIdclient());
 
+        //Valida que no se creen cuentas de tipos no permitidos
         if (accountType == null) {
             return null;
-        } else if (product1 != null && !Objects.equals(productRequest.getAccounttype(),"VIP") && Objects.equals(productRequest.getClienttype(),"Personal")) {
+        }
+        //Valida que no se cree una segunda cuenta con el mismo DNI en los casos que no aplica
+        else if (product1 != null && !Objects.equals(productRequest.getAccounttype(),"VIP") && Objects.equals(productRequest.getClienttype(),"Personal")) {
             return null;
         } else {
 

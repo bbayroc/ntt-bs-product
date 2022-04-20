@@ -41,6 +41,10 @@ public class ProductController {
     public Product patch(@PathVariable String idaccount, @RequestBody BalanceUpdate balanceUpdate) {
 
         Product product = productRepository.findByIdaccount(idaccount);
+
+        product.getAccounttype();
+        product.getMovementlimit();
+
         product.setBalance(product.getBalance() + balanceUpdate.getBalance());
         return productRepository.save(product);
     }
