@@ -11,4 +11,6 @@ public interface ProductRepository extends MongoRepository<Product, Long> {
 
     Product findByIdaccount(String idaccount);
     Product findByIdclient(String idclient);
+    List<Product> findByAccounttype(String accounttype);
+
 }
