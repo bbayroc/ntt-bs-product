@@ -6,9 +6,7 @@ import com.example.product.entity.Product;
 import com.example.product.entity.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import java.util.Objects;
-
 @Repository
 public class Validator {
     @Autowired
@@ -39,7 +37,6 @@ public class Validator {
 
         else return null;
     }
-
     public Product productvalidator(ProductRequest productRequest) {
 
         AccountType accountType = accountTypeRepository.findByAccounttypeAndClienttype(productRequest.getAccounttype(), productRequest.getClienttype());

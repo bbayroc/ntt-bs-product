@@ -2,7 +2,6 @@ package com.example.product.entity;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 @Document(collection = "AccountType")
 @Data
 public class AccountType {

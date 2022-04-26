@@ -2,7 +2,6 @@ package com.example.product.controller;
 
 import com.example.product.Service.SequenceGeneratorService;
 import com.example.product.entity.AccountType;
-import com.example.product.entity.Product;
 import com.example.product.repository.AccountTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
