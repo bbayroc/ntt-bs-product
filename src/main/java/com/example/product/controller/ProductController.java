@@ -7,10 +7,12 @@ import com.example.product.repository.Validator;
 import com.example.product.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Products")
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
@@ -19,26 +21,26 @@ public class ProductController {
     private Validator validator;
 
     @PostMapping
-    public Product save(@RequestBody ProductRequest productRequest) {
+    public Product save(@RequestBody ProductRequest productRequest) throws IOException {
         return productRepository.save(validator.productvalidator(productRequest));
     }
 
-    @GetMapping("/Accounttype/{accounttype}")
+    @GetMapping("/accounttype/{accounttype}")
     public List<Product> find3(@PathVariable String accounttype) {
         return productRepository.findByAccounttype(accounttype);
     }
 
-    @GetMapping("/Idclients/{idclient}")
+    @GetMapping("/idclients/{idclient}")
     public Product find2(@PathVariable String idclient) {
         return productRepository.findByIdclient(idclient);
     }
 
-    @GetMapping("/Idaccounts/{idaccount}")
+    @GetMapping("/idaccounts/{idaccount}")
     public Product find(@PathVariable String idaccount) {
         return productRepository.findByIdaccount(idaccount);
     }
 
-    @PatchMapping("/Balance/{idaccount}")
+    @PatchMapping("/balance/{idaccount}")
     public Product patch(@PathVariable String idaccount, @RequestBody BalanceUpdate balanceUpdate) {
 
         Product product = productRepository.findByIdaccount(idaccount);
@@ -47,7 +49,7 @@ public class ProductController {
         return productRepository.save(product);
     }
 
-    @PatchMapping("/Comission/{accounttype}")
+    @PatchMapping("/comission/{accounttype}")
     public Product patch2(@PathVariable String accounttype, @RequestBody BalanceUpdate balanceUpdate) {
 
         List<Product> products = productRepository.findByAccounttype(accounttype);
