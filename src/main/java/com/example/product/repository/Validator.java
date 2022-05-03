@@ -1,14 +1,11 @@
 package com.example.product.repository;
 
-import com.example.product.Service.CardsService;
 import com.example.product.Service.SequenceGeneratorService;
 import com.example.product.entity.AccountType;
-import com.example.product.entity.CardResponse;
 import com.example.product.entity.Product;
 import com.example.product.entity.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import retrofit2.Call;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -21,30 +18,14 @@ public class Validator {
     private AccountTypeRepository accountTypeRepository;
 
     @Autowired
-    CardsService cardsService;
-    @Autowired
     private SequenceGeneratorService sequenceGeneratorService;
 
     public Product accountvalidator(Product product, AccountType accountType) throws IOException {
 
-        if (accountType.getMinimumbalance() < product.getBalance() && accountType.isCreditcardrequired()) {
-
-            Call<CardResponse> call3 = cardsService.cardrequest(product.getIdclient());
-            CardResponse cardResponse = new CardResponse();
-            cardResponse = call3.execute().body();
-
-            //Product product1 = productRepository.findByIdclient(product.getIdclient());
-
-            //Valida que el cliente tenga una Tarjeta de Credito
-            if (Objects.equals(cardResponse.getCardtype(), "Credit")) {
-
-                return product;
-
-            } else return null;
-
-        } else if (accountType.getMinimumbalance() < product.getBalance())
+        if (accountType.getMinimumbalance() < product.getBalance()) {
 
             return product;
+        }
 
         else return null;
     }

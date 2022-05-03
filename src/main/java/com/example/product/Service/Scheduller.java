@@ -18,7 +18,7 @@ public class Scheduller {
 
         List<Product> products = productRepository.findByAccounttype("Cuenta Corriente");
 
-        products.forEach(f -> f.setBalance(f.getBalance() - 30.0));
+        products.forEach(f -> f.setBalance(f.getBalance() - f.getComission()));
         products.forEach(f -> productRepository.save(f));
 
     }
