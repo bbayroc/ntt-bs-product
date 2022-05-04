@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  mongoproduct:
+    build: 
+      context: .
+      dockerfile: Dockerfilemongo
+    environment:
+      - MONGO_INITDB_DATABASE=ProductDB
+    ports:
+      - "27019:27017"
+    networks:
+      - default
+      - nttdata-net
+  productapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    depends_on:
+      - "mongoproduct"
+    networks:
+      - default
+      - nttdata-net
+networks:
+  default: 
+    driver: bridge
+  nttdata-net:
+    external: true
+
